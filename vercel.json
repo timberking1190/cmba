@@ -1,13 +1,12 @@
 {
+  "framework": "nextjs",
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "installCommand": "npm install --legacy-peer-deps",
-  "devCommand": "npm run dev",
-  "framework": "nextjs",
-  "regions": ["iad1"],
-  "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": "https://jsjmomgghnyngguqydzt.supabase.co",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzam1vbWdnaG55bmdndXF5ZHp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNzExMTAsImV4cCI6MjA4ODk0NzExMH0.EJqCh6LmqEFShH5X6WavcGk5gTUTrwNg25wrmh1SpUc",
-    "NEXT_PUBLIC_SITE_URL": "https://cmbaplatform.vercel.app"
+  "installCommand": "npm install",
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_SUPABASE_URL": "https://jsjmomgghnyngguqydzt.supabase.co",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impzam1vbWdnaG55bmdndXF5ZHp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMzNzExMTAsImV4cCI6MjA4ODk0NzExMH0.EJqCh6LmqEFShH5X6WavcGk5gTUTrwNg25wrmh1SpUc"
+    }
   }
 }
