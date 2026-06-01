@@ -1,15 +1,13 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://jsjmomgghnyngguqydzt.supabase.co'
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://vdlpmjmpaalesmddwabo.supabase.co'
+const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_rYOxJ1k52TaEuYPPxkjjPg_yKLcIUqC'
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({ request: { headers: request.headers } })
-  
-  if (!supabaseKey) return response
-
-  const supabase = createServerClient(supabaseUrl, supabaseKey, {
+  if (!key) return response
+  const supabase = createServerClient(url, key, {
     cookies: {
       get(name) { return request.cookies.get(name)?.value },
       set(name, value, options) {
@@ -24,18 +22,12 @@ export async function middleware(request: NextRequest) {
       },
     },
   })
-
   const { data: { user } } = await supabase.auth.getUser()
-  
-  if (request.nextUrl.pathname.startsWith('/admin') && !user) {
+  if (request.nextUrl.pathname.startsWith('/admin') && !user)
     return NextResponse.redirect(new URL('/login', request.url))
-  }
-  if (request.nextUrl.pathname.startsWith('/dashboard') && !user) {
+  if (request.nextUrl.pathname.startsWith('/dashboard') && !user)
     return NextResponse.redirect(new URL('/login', request.url))
-  }
   return response
 }
 
-export const config = {
-  matcher: ['/admin/:path*', '/dashboard/:path*'],
-}
+export const config = { matcher: ['/admin/:path*', '/dashboard/:path*'] }
