@@ -140,8 +140,7 @@ export default function ScheduleManager() {
   }
 
   async function downloadTemplate() {
-    const csv = 'GameNumber,Season,Game Type,Category,Home Division,Visitor Division,Home SubDivision,Visitor SubDivision,Date,Start,End,Court,CourtAbbr,CourtCity,Home Team,Visitor Team,Home Team Abbr,Visitor Team Abbr,Home Team Display,Visitor Team Display,Home Score,Visitor Score,Completed,OT,SO,Notes
-12345,Winter 2025,Regular Season,Boys U13,Boys U13 Div 1,Boys U13 Div 1,,,1/20/2025,9:00,10:15,Glenmore Christian Academy Court 1,GCA1,Calgary,Bow BU13-1,SoCal BU13-1,,,,,,,,,'
+    const csv = `GameNumber,Season,Game Type,Category,Home Division,Visitor Division,Home SubDivision,Visitor SubDivision,Date,Start,End,Court,CourtAbbr,CourtCity,Home Team,Visitor Team,Home Team Abbr,Visitor Team Abbr,Home Team Display,Visitor Team Display,Home Score,Visitor Score,Completed,OT,SO,Notes\n12345,Winter 2025,Regular Season,Boys U13,Boys U13 Div 1,Boys U13 Div 1,,,1/20/2025,9:00,10:15,Glenmore Christian Academy Court 1,GCA1,Calgary,Bow BU13-1,SoCal BU13-1,,,,,,,,,`
     const blob = new Blob([csv], {type:'text/csv'})
     const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='cmba-schedule-template.csv'; a.click()
   }
