@@ -266,3 +266,72 @@ img { max-width: 100%; height: auto; display: block; }
 /* Table cell text must meet contrast requirements */
 th { color: var(--text-muted); font-size: 0.75rem; }
 td { color: var(--text-primary); }
+
+/* ══════════════════════════════════════════════════════
+   SPLASH SCREEN — mobile-only, once per session
+   ══════════════════════════════════════════════════════ */
+
+/* ── Ball physics ─────────────────────────────────────── */
+@keyframes ballDrop {
+  0%   { transform: translateY(-160px) rotate(-20deg); opacity: 0; }
+  35%  { transform: translateY(4px)   rotate(165deg);  opacity: 1; }
+  50%  { transform: translateY(-52px) rotate(200deg); }
+  62%  { transform: translateY(2px)   rotate(230deg); }
+  72%  { transform: translateY(-20px) rotate(248deg); }
+  82%  { transform: translateY(1px)   rotate(264deg); }
+  89%  { transform: translateY(-7px)  rotate(272deg); }
+  96%  { transform: translateY(0)     rotate(278deg); }
+  100% { transform: translateY(0)     rotate(280deg); opacity: 1; }
+}
+
+/* ── Ball squish on each bounce ──────────────────────── */
+@keyframes ballSquish {
+  0%,100%    { transform: scaleX(1)   scaleY(1); }
+  35%,62%,82%,96% { transform: scaleX(1.22) scaleY(0.78); }
+  43%,69%,87% { transform: scaleX(0.92) scaleY(1.08); }
+}
+
+/* ── Court lines radiating ────────────────────────────── */
+@keyframes courtDraw {
+  from { stroke-dashoffset: 900; opacity: 0; }
+  to   { stroke-dashoffset: 0;   opacity: 1; }
+}
+
+/* ── Logo + text entrances ────────────────────────────── */
+@keyframes splashLogoIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes splashLineIn {
+  from { opacity: 0; transform: translateY(40px) skewY(3deg); }
+  to   { opacity: 1; transform: translateY(0)    skewY(0deg); }
+}
+@keyframes splashTagIn {
+  from { opacity: 0; letter-spacing: 0.5em; }
+  to   { opacity: 1; letter-spacing: 0.18em; }
+}
+@keyframes splashHintPulse {
+  0%,100% { opacity: 0.45; transform: translateY(0); }
+  50%     { opacity: 0.85; transform: translateY(-3px); }
+}
+@keyframes glowPulse {
+  0%,100% { opacity: 0.35; transform: scale(1); }
+  50%     { opacity: 0.6;  transform: scale(1.12); }
+}
+
+/* ── Red dot ping ─────────────────────────────────────── */
+@keyframes pingRed {
+  0%   { transform: scale(0.8); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* ── EXIT: curtain sweeps up ──────────────────────────── */
+@keyframes curtainUp {
+  0%   { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
+}
+@keyframes contentFade {
+  0%   { opacity: 1; transform: scale(1); }
+  40%  { opacity: 0.4; }
+  100% { opacity: 0; transform: scale(0.96); }
+}

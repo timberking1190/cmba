@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
+import { SplashScreen } from '@/components/ui/SplashScreen'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -36,14 +37,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-TileColor" content="#CC0000" />
       </head>
       <body>
-        {/* Skip navigation — WCAG 2.4.1 Bypass Blocks */}
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
+        {/* Skip navigation — WCAG 2.4.1 */}
+        <a href="#main-content" className="skip-link">Skip to main content</a>
+
+        {/* Splash — mobile only, once per session */}
+        <SplashScreen />
+
         {children}
+
         <Script id="register-sw" strategy="afterInteractive">{`
           if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
