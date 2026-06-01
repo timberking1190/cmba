@@ -59,7 +59,7 @@ export default function SchedulePage() {
         {/* Header */}
         <div className="flex items-center gap-3 mb-3">
           <div className="w-7 h-px bg-red-600" />
-          <span className="font-mono text-[10px] tracking-[3px] uppercase text-red-500">2025–26 Season</span>
+          <span className="font-mono text-[10px] tracking-[2px] uppercase text-red-500">2025–26 Season</span>
         </div>
         <h1 className="font-display text-[clamp(48px,7vw,90px)] leading-none tracking-[-1px] text-white mb-8">
           SCHEDULE &<br /><span className="text-red-500">STANDINGS</span>
@@ -90,13 +90,13 @@ export default function SchedulePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="xl:col-span-2 space-y-4">
             {loading ? (
-              <div className="border border-white/8 p-12 text-center text-gray-600 font-mono text-xs tracking-[2px]">
+              <div className="border border-white/8 p-12 text-center text-gray-400 font-mono text-xs tracking-[2px]">
                 LOADING SCHEDULE...
               </div>
             ) : Object.keys(grouped).length === 0 ? (
               <div className="border border-white/8 p-12 text-center">
-                <Calendar className="mx-auto mb-3 text-gray-700" size={32} />
-                <p className="text-gray-600 font-mono text-xs tracking-[2px] uppercase">No games found</p>
+                <Calendar className="mx-auto mb-3 text-gray-400" size={32} />
+                <p className="text-gray-400 font-mono text-xs tracking-[2px] uppercase">No games found</p>
               </div>
             ) : (
               Object.entries(grouped).map(([date, dayGames]) => (
@@ -105,11 +105,11 @@ export default function SchedulePage() {
                     <span className="font-display text-lg tracking-wide text-white">{date}</span>
                     <div className="flex items-center gap-3">
                       {dayGames.some(g => g.status === 'live') && (
-                        <span className="font-mono text-[9px] tracking-[2px] text-red-400 flex items-center gap-1.5 animate-live">
+                        <span className="font-mono text-[11px] tracking-[2px] text-red-400 flex items-center gap-1.5 animate-live">
                           <span className="w-1.5 h-1.5 rounded-full bg-red-500" /> LIVE
                         </span>
                       )}
-                      <span className="font-mono text-[9px] tracking-[2px] text-gray-600">{dayGames.length} GAMES</span>
+                      <span className="font-mono text-[11px] tracking-[2px] text-gray-400">{dayGames.length} GAMES</span>
                     </div>
                   </div>
                   {dayGames.map(g => <GameCard key={g.id} game={g} />)}
@@ -121,14 +121,14 @@ export default function SchedulePage() {
           {/* Sidebar */}
           <div className="space-y-4">
             <div className="border border-white/8 p-5">
-              <div className="font-mono text-[9px] tracking-[3px] uppercase text-gray-600 mb-3">Quick Links</div>
+              <div className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 mb-3">Quick Links</div>
               <a href="/standings" className="flex items-center gap-3 py-2.5 text-sm text-gray-400 hover:text-white border-b border-white/5 last:border-0 transition-colors">
                 <Star size={13} className="text-red-500" /> Division Standings →
               </a>
             </div>
             <div className="border border-red-600/20 bg-red-600/4 p-5">
-              <div className="font-mono text-[9px] tracking-[3px] uppercase text-red-600 mb-2">Save My Teams</div>
-              <p className="text-xs text-gray-600 mb-3">Get notifications for your team's games and scores.</p>
+              <div className="font-mono text-[11px] tracking-[2px] uppercase text-red-600 mb-2">Save My Teams</div>
+              <p className="text-xs text-gray-400 mb-3">Get notifications for your team's games and scores.</p>
               <a href="/signup" className="font-display text-sm tracking-[2px] bg-red-600 text-black px-4 py-2 inline-block hover:bg-red-500 transition-colors">
                 Create Account →
               </a>

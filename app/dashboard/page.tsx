@@ -36,7 +36,7 @@ export default function DashboardPage() {
     setUpcomingGames(games || [])
   }
 
-  if (!profile) return <div className="min-h-screen flex items-center justify-center"><div className="font-mono text-xs text-gray-600 tracking-[3px]">LOADING...</div></div>
+  if (!profile) return <div className="min-h-screen flex items-center justify-center"><div className="font-mono text-xs text-gray-400 tracking-[2px]">LOADING...</div></div>
 
   return (
     <div className="min-h-screen">
@@ -44,9 +44,9 @@ export default function DashboardPage() {
       <Navbar />
       <div className="relative z-10 pt-28 px-8 md:px-14 pb-20">
         <div className="mb-8">
-          <span className="font-mono text-[10px] tracking-[3px] uppercase text-red-500 block mb-1">My Dashboard</span>
+          <span className="font-mono text-[10px] tracking-[2px] uppercase text-red-500 block mb-1">My Dashboard</span>
           <h1 className="font-display text-5xl text-white">Welcome back, {profile.full_name?.split(' ')[0] || 'Friend'}</h1>
-          <span className="font-mono text-xs text-gray-600 tracking-[2px] uppercase mt-1 block">{profile.role}</span>
+          <span className="font-mono text-xs text-gray-400 tracking-[2px] uppercase mt-1 block">{profile.role}</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -57,7 +57,7 @@ export default function DashboardPage() {
               <span className="font-mono text-[10px] tracking-[2px] uppercase text-gray-400">Upcoming Games</span>
             </div>
             {upcomingGames.length === 0 ? (
-              <div className="p-8 text-center text-gray-600 text-sm">No upcoming games scheduled</div>
+              <div className="p-8 text-center text-gray-400 text-sm">No upcoming games scheduled</div>
             ) : (
               upcomingGames.slice(0,5).map(g => (
                 <div key={g.id} className="flex items-center gap-4 px-5 py-3 border-b border-white/4 last:border-0">
@@ -67,9 +67,9 @@ export default function DashboardPage() {
                   </div>
                   <div className="flex-1">
                     <div className="text-sm text-white font-medium">{g.home_team_name} vs {g.away_team_name}</div>
-                    <div className="text-xs text-gray-600">{g.venues?.name || g.court}</div>
+                    <div className="text-xs text-gray-400">{g.venues?.name || g.court}</div>
                   </div>
-                  <span className="font-mono text-[9px] px-2 py-1 bg-white/6 text-gray-500 tracking-[1px]">{g.category}</span>
+                  <span className="font-mono text-[11px] px-2 py-1 bg-white/6 text-gray-500 tracking-[1px]">{g.category}</span>
                 </div>
               ))
             )}
@@ -83,19 +83,19 @@ export default function DashboardPage() {
             <div className="border border-white/8 p-5">
               <div className="flex items-center gap-2 mb-4">
                 <User size={13} className="text-red-500" />
-                <span className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500">My Profile</span>
+                <span className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400">My Profile</span>
               </div>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Name</span>
+                  <span className="text-gray-400">Name</span>
                   <span className="text-white">{profile.full_name}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Role</span>
+                  <span className="text-gray-400">Role</span>
                   <span className="text-white capitalize">{profile.role}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Email</span>
+                  <span className="text-gray-400">Email</span>
                   <span className="text-white text-xs">{profile.email}</span>
                 </div>
               </div>
@@ -105,12 +105,12 @@ export default function DashboardPage() {
               <div className="border border-white/8 p-5">
                 <div className="flex items-center gap-2 mb-4">
                   <Bell size={13} className="text-red-500" />
-                  <span className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500">Announcements</span>
+                  <span className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400">Announcements</span>
                 </div>
                 {announcements.map(a => (
                   <div key={a.id} className="py-3 border-b border-white/5 last:border-0">
                     <div className="text-sm font-medium text-white mb-1">{a.title}</div>
-                    <div className="text-xs text-gray-600">{a.body?.slice(0,80)}{a.body?.length > 80 ? '...' : ''}</div>
+                    <div className="text-xs text-gray-400">{a.body?.slice(0,80)}{a.body?.length > 80 ? '...' : ''}</div>
                   </div>
                 ))}
               </div>

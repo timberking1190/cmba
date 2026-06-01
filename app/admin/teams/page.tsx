@@ -42,7 +42,7 @@ export default function TeamsPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <div className="font-mono text-[9px] tracking-[3px] uppercase text-red-500 mb-1">Team Management</div>
+          <div className="font-mono text-[11px] tracking-[2px] uppercase text-red-500 mb-1">Team Management</div>
           <h1 className="font-display text-4xl text-white tracking-wide">Teams & Rosters</h1>
         </div>
         <button onClick={() => setShowAddTeam(true)}
@@ -74,16 +74,16 @@ export default function TeamsPage() {
                 <div className="w-3 h-10 rounded-sm" style={{background: t.color || t.clubs?.primary_color || '#CC0000'}} />
                 <div>
                   <div className="font-medium text-white">{t.name}</div>
-                  <div className="font-mono text-[10px] text-gray-600 tracking-[1px] mt-0.5">{t.divisions?.name}</div>
+                  <div className="font-mono text-[10px] text-gray-400 tracking-[1px] mt-0.5">{t.divisions?.name}</div>
                 </div>
               </div>
             </div>
             <div className="flex items-center justify-between text-xs">
-              <div className="flex items-center gap-1.5 text-gray-600">
+              <div className="flex items-center gap-1.5 text-gray-400">
                 <Users size={11} />
                 <span>{t.players?.[0]?.count || 0} players</span>
               </div>
-              <button className="font-mono text-[9px] tracking-[1px] px-3 py-1.5 border border-white/10 text-gray-500 hover:text-white hover:border-white/25">
+              <button className="font-mono text-[11px] tracking-[1px] px-3 py-1.5 border border-white/10 text-gray-500 hover:text-white hover:border-white/25">
                 Manage Roster
               </button>
             </div>
@@ -99,13 +99,13 @@ export default function TeamsPage() {
             </div>
             <div className="p-6 space-y-4">
               <div>
-                <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Team Name</label>
+                <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Team Name</label>
                 <input value={newTeam.name} onChange={e => setNewTeam({...newTeam, name:e.target.value})}
                   className="w-full bg-white/5 border border-white/10 text-white px-3 py-2.5 text-sm outline-none focus:border-red-600/40"
                   placeholder="e.g. Bow BU13-4" />
               </div>
               <div>
-                <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Division</label>
+                <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Division</label>
                 <select value={newTeam.division_id} onChange={e => setNewTeam({...newTeam, division_id:e.target.value})}
                   className="w-full bg-[#0a0400] border border-white/10 text-white px-3 py-2.5 text-sm outline-none">
                   <option value="">Select Division</option>
@@ -113,11 +113,11 @@ export default function TeamsPage() {
                 </select>
               </div>
               <div>
-                <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Team Color</label>
+                <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Team Color</label>
                 <div className="flex gap-3 items-center">
                   <input type="color" value={newTeam.color} onChange={e => setNewTeam({...newTeam, color:e.target.value})}
                     className="h-10 w-14 bg-transparent border border-white/10 cursor-pointer" />
-                  <span className="font-mono text-xs text-gray-600">{newTeam.color}</span>
+                  <span className="font-mono text-xs text-gray-300">{newTeam.color}</span>
                 </div>
               </div>
             </div>

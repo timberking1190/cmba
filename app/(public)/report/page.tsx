@@ -67,7 +67,7 @@ export default function ReportPage() {
       <div className="relative z-10 pt-24 px-4 md:px-14 pb-32 flex flex-col items-center justify-center min-h-[70vh]">
         <CheckCircle size={56} className="text-green-400 mb-6" />
         <h1 className="font-display text-4xl md:text-5xl text-white mb-3 text-center">Report Received</h1>
-        <p className="text-gray-500 text-center max-w-md leading-relaxed mb-8">
+        <p className="text-gray-400 text-center max-w-md leading-relaxed mb-8">
           {type === 'concern'
             ? 'Your report has been submitted and assigned a reference number. A CMBA representative will review it within 48–72 hours. Check your email for a confirmation.'
             : 'Thank you for taking the time to recognize great work. Your compliment will be shared with the appropriate parties.'}
@@ -86,7 +86,7 @@ export default function ReportPage() {
       <div className="relative z-10 pt-24 px-4 md:px-14 pb-32 md:pb-20">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-7 h-px bg-red-600"/>
-          <span className="font-mono text-[10px] tracking-[3px] uppercase text-red-500">Sportsmanship & Conduct</span>
+          <span className="font-mono text-[10px] tracking-[2px] uppercase text-red-500">Sportsmanship & Conduct</span>
         </div>
         <h1 className="font-display text-[clamp(48px,7vw,90px)] leading-none tracking-[-1px] text-white mb-8">
           GAME<br/><span className="text-red-500">REPORT</span>
@@ -95,7 +95,7 @@ export default function ReportPage() {
         {/* Type selection */}
         {!type && (
           <div>
-            <p className="text-sm text-gray-500 max-w-lg leading-relaxed mb-8">
+            <p className="text-sm text-gray-400 max-w-lg leading-relaxed mb-8">
               Use this form to submit a conduct concern or recognize outstanding sportsmanship. All submissions are reviewed by CMBA staff. Concerns related to officials are forwarded to Basketball Alberta's SCC when appropriate.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl">
@@ -103,15 +103,15 @@ export default function ReportPage() {
                 className="border border-red-600/30 bg-red-600/5 p-7 text-left hover:bg-red-600/10 transition-colors group">
                 <AlertTriangle size={28} className="text-red-500 mb-4"/>
                 <h2 className="font-display text-2xl tracking-wide text-white mb-2">Submit a Concern</h2>
-                <p className="text-sm text-gray-500 leading-relaxed">Report conduct, officiating, or safety issues that need CMBA's attention.</p>
-                <div className="mt-4 font-mono text-[10px] tracking-[2px] uppercase text-red-500 group-hover:tracking-[3px] transition-all">Continue →</div>
+                <p className="text-sm text-gray-300 leading-relaxed">Report conduct, officiating, or safety issues that need CMBA's attention.</p>
+                <div className="mt-4 font-mono text-[10px] tracking-[2px] uppercase text-red-500 group-hover:tracking-[2px] transition-all">Continue →</div>
               </button>
               <button onClick={() => { setType('compliment'); setStep(1) }}
                 className="border border-white/8 bg-white/2 p-7 text-left hover:bg-white/5 transition-colors group">
                 <Star size={28} className="text-yellow-400 mb-4"/>
                 <h2 className="font-display text-2xl tracking-wide text-white mb-2">Submit a Compliment</h2>
-                <p className="text-sm text-gray-500 leading-relaxed">Recognize an official, coach, or player who demonstrated exceptional sportsmanship.</p>
-                <div className="mt-4 font-mono text-[10px] tracking-[2px] uppercase text-yellow-500 group-hover:tracking-[3px] transition-all">Continue →</div>
+                <p className="text-sm text-gray-300 leading-relaxed">Recognize an official, coach, or player who demonstrated exceptional sportsmanship.</p>
+                <div className="mt-4 font-mono text-[10px] tracking-[2px] uppercase text-yellow-500 group-hover:tracking-[2px] transition-all">Continue →</div>
               </button>
             </div>
           </div>
@@ -121,7 +121,7 @@ export default function ReportPage() {
           <div className="max-w-2xl">
             {/* Back + type indicator */}
             <div className="flex items-center gap-4 mb-8">
-              <button onClick={() => setType(null)} className="font-mono text-[10px] tracking-[2px] uppercase text-gray-600 hover:text-red-500">← Change</button>
+              <button onClick={() => setType(null)} className="font-mono text-[10px] tracking-[2px] uppercase text-gray-400 hover:text-red-500">← Change</button>
               <span className={`flex items-center gap-2 font-mono text-[10px] tracking-[2px] uppercase px-3 py-1.5
                 ${type==='concern' ? 'bg-red-600/15 text-red-400' : 'bg-yellow-500/15 text-yellow-400'}`}>
                 {type==='concern' ? <AlertTriangle size={10}/> : <Star size={10}/>}
@@ -140,21 +140,21 @@ export default function ReportPage() {
             {step === 1 && (
               <div className="space-y-5">
                 <h2 className="font-display text-2xl tracking-wide text-white mb-1">Your Information</h2>
-                <p className="text-sm text-gray-500 mb-6">Your contact information is kept confidential and used only by CMBA staff for follow-up.</p>
+                <p className="text-sm text-gray-400 mb-6">Your contact information is kept confidential and used only by CMBA staff for follow-up.</p>
                 {[
                   { label:'Full Name *', key:'submitter_name', type:'text', ph:'Jane Smith' },
                   { label:'Email *', key:'submitter_email', type:'email', ph:'you@example.com' },
                   { label:'Phone (optional)', key:'submitter_phone', type:'tel', ph:'+1 (403) 555-0100' },
                 ].map(f => (
                   <div key={f.key}>
-                    <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">{f.label}</label>
+                    <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">{f.label}</label>
                     <input type={f.type} value={(form as any)[f.key]} onChange={e=>set(f.key, e.target.value)}
                       placeholder={f.ph}
                       className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm outline-none focus:border-red-600/50 transition-colors"/>
                   </div>
                 ))}
                 <div>
-                  <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Your Role</label>
+                  <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Your Role</label>
                   <select value={form.submitter_role} onChange={e=>set('submitter_role', e.target.value)}
                     className="w-full bg-[#0a0400] border border-white/10 text-white px-4 py-3 text-sm outline-none focus:border-red-600/50">
                     <option value="">Select your role...</option>
@@ -172,15 +172,15 @@ export default function ReportPage() {
             {step === 2 && (
               <div className="space-y-5">
                 <h2 className="font-display text-2xl tracking-wide text-white mb-1">Game Details</h2>
-                <p className="text-sm text-gray-500 mb-6">Help us identify the game in question. Fill in as much as you know.</p>
+                <p className="text-sm text-gray-400 mb-6">Help us identify the game in question. Fill in as much as you know.</p>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Game Date</label>
+                    <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Game Date</label>
                     <input type="date" value={form.game_date} onChange={e=>set('game_date',e.target.value)}
                       className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm outline-none focus:border-red-600/50"/>
                   </div>
                   <div>
-                    <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Division</label>
+                    <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Division</label>
                     <input value={form.division_name} onChange={e=>set('division_name',e.target.value)}
                       placeholder="e.g. Boys U13 Div 1"
                       className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm outline-none focus:border-red-600/50"/>
@@ -192,7 +192,7 @@ export default function ReportPage() {
                   { label:'Venue / Gym', key:'venue_name', ph:'e.g. Glenmore Christian Academy' },
                 ].map(f => (
                   <div key={f.key}>
-                    <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">{f.label}</label>
+                    <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">{f.label}</label>
                     <input value={(form as any)[f.key]} onChange={e=>set(f.key,e.target.value)} placeholder={f.ph}
                       className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm outline-none focus:border-red-600/50"/>
                   </div>
@@ -200,7 +200,7 @@ export default function ReportPage() {
 
                 {type === 'concern' && (
                   <div>
-                    <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-3">Who is this report about? (select all that apply)</label>
+                    <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-3">Who is this report about? (select all that apply)</label>
                     <div className="space-y-2">
                       {REPORTED_PARTIES.map(p => (
                         <label key={p} className="flex items-center gap-3 cursor-pointer p-2.5 hover:bg-white/3 transition-colors">
@@ -215,7 +215,7 @@ export default function ReportPage() {
 
                 {type === 'concern' && form.reported_parties.some(p=>p.includes('Official')) && (
                   <div>
-                    <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Official Concern Category</label>
+                    <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Official Concern Category</label>
                     <select value={form.official_category} onChange={e=>set('official_category',e.target.value)}
                       className="w-full bg-[#0a0400] border border-white/10 text-white px-4 py-3 text-sm outline-none">
                       <option value="">Select category...</option>
@@ -237,13 +237,13 @@ export default function ReportPage() {
                 <h2 className="font-display text-2xl tracking-wide text-white mb-1">
                   {type==='concern' ? 'Describe the Concern' : 'What Stood Out?'}
                 </h2>
-                <p className="text-sm text-gray-500 mb-4">
+                <p className="text-sm text-gray-400 mb-4">
                   {type==='concern'
                     ? 'Be as specific and factual as possible. Include times, statements, and actions. Do not include personal attacks or speculation.'
                     : 'Describe what made this person or moment stand out. Be specific — what did they do, and why did it matter?'}
                 </p>
                 <div>
-                  <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Description *</label>
+                  <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Description *</label>
                   <textarea value={form.description} onChange={e=>set('description',e.target.value)} rows={7}
                     placeholder={type==='concern'
                       ? 'Describe the incident as clearly and factually as possible...'
@@ -255,7 +255,7 @@ export default function ReportPage() {
                   <div className="border border-yellow-500/20 bg-yellow-500/4 p-4">
                     <div className="flex gap-2 items-start">
                       <AlertTriangle size={13} className="text-yellow-400 flex-shrink-0 mt-0.5"/>
-                      <p className="text-xs text-gray-400 leading-relaxed">
+                      <p className="text-xs text-gray-300 leading-relaxed">
                         Concerns involving officials are reviewed by CMBA and may be forwarded to Basketball Alberta's Supervisor of Competition Conduct (SCC). CMBA does not override officiating decisions, but patterns of misconduct are addressed through formal channels.
                       </p>
                     </div>
@@ -266,7 +266,7 @@ export default function ReportPage() {
                   <input type="checkbox" checked={form.acknowledged_policy}
                     onChange={e=>set('acknowledged_policy',e.target.checked)}
                     className="accent-red-600 w-4 h-4 mt-0.5 flex-shrink-0"/>
-                  <span className="text-xs text-gray-500 leading-relaxed">
+                  <span className="text-xs text-gray-300 leading-relaxed">
                     I confirm that this submission is truthful and made in good faith. I understand that false or malicious reports may result in consequences under CMBA's conduct policy. I acknowledge that CMBA staff will contact me at the email provided.
                   </span>
                 </label>

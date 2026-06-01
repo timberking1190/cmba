@@ -44,7 +44,7 @@ export default function HomePage() {
           </span>
         </h1>
 
-        <p className="text-gray-300 text-base md:text-lg font-light max-w-md mb-10 leading-relaxed">
+        <p className="text-slate-200 text-base md:text-lg font-light max-w-md mb-10 leading-relaxed">
           Every game. Every rule. Every coach, referee, and parent.
           Built for the bench and the bleachers.
         </p>
@@ -74,7 +74,7 @@ export default function HomePage() {
           ].map(s => (
             <div key={s.lbl} className="px-6 md:px-8 py-5 border-r border-white/8 last:border-r-0 bg-white/2">
               <div className="font-display text-2xl md:text-3xl text-red-500">{s.val}</div>
-              <div className="font-mono text-[9px] tracking-[2px] uppercase text-gray-600 mt-1">{s.lbl}</div>
+              <div className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 mt-1">{s.lbl}</div>
             </div>
           ))}
         </div>
@@ -84,7 +84,7 @@ export default function HomePage() {
       <section className="relative z-10 px-5 md:px-14 py-12 md:py-20">
         <div className="flex items-center gap-4 mb-8 md:mb-10">
           <div className="w-7 h-px bg-red-600" />
-          <span className="font-mono text-[10px] tracking-[3px] uppercase text-red-500">The Platform</span>
+          <span className="font-mono text-[10px] tracking-[2px] uppercase text-red-500">The Platform</span>
         </div>
         <h2
           className="font-display leading-none tracking-[-1px] text-white mb-4"
@@ -102,10 +102,10 @@ export default function HomePage() {
               className="bg-[#060200] p-6 md:p-7 group hover:bg-[#0d0400] active:bg-[#0d0400] transition-colors relative overflow-hidden"
             >
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-              <span className="font-mono text-[10px] text-gray-700 tracking-[2px] mb-4 block">{m.num} / 05</span>
+              <span className="font-mono text-[10px] text-gray-400 tracking-[2px] mb-4 block">{m.num} / 05</span>
               <span className="text-2xl mb-3 block">{m.icon}</span>
               <div className="font-display text-xl tracking-wide text-white mb-2">{m.title}</div>
-              <div className="text-xs text-gray-600 leading-relaxed">{m.desc}</div>
+              <div className="text-xs text-gray-300 leading-relaxed">{m.desc}</div>
               <div className="absolute top-5 right-5 text-red-500 opacity-0 group-hover:opacity-100 transition-opacity text-sm">↗</div>
             </Link>
           ))}
@@ -119,13 +119,13 @@ export default function HomePage() {
           {['Schedule','Standings','Rules','Education','Report'].map(l => (
             <li key={l}>
               <Link href={`/${l.toLowerCase()}`}
-                className="font-mono text-[10px] tracking-[2px] uppercase text-gray-600 hover:text-white transition-colors">
+                className="font-mono text-[10px] tracking-[2px] uppercase text-gray-400 hover:text-white transition-colors">
                 {l}
               </Link>
             </li>
           ))}
         </ul>
-        <div className="font-mono text-[10px] text-gray-700">© 2025–26 CMBA · Boost Innovation</div>
+        <div className="font-mono text-[10px] text-gray-400">© 2025–26 CMBA · Boost Innovation</div>
       </footer>
     </div>
   )

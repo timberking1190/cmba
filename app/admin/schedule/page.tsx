@@ -155,7 +155,7 @@ export default function ScheduleManager() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <div className="font-mono text-[9px] tracking-[3px] uppercase text-red-500 mb-1">Schedule Manager</div>
+          <div className="font-mono text-[11px] tracking-[2px] uppercase text-red-500 mb-1">Schedule Manager</div>
           <h1 className="font-display text-4xl text-white tracking-wide">Game Schedule</h1>
         </div>
         <div className="flex gap-3">
@@ -183,14 +183,14 @@ export default function ScheduleManager() {
               <div key={i} className="font-mono text-[10px] text-yellow-400">{e}</div>
             ))}
           </div>
-          <button onClick={() => setImportResult(null)} className="ml-auto text-gray-600 hover:text-white text-lg leading-none">×</button>
+          <button onClick={() => setImportResult(null)} className="ml-auto text-gray-400 hover:text-white text-lg leading-none">×</button>
         </div>
       )}
 
       {/* Filters */}
       <div className="flex gap-3 mb-5">
         <div className="relative flex-1 max-w-xs">
-          <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
+          <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           <input value={filter.search} onChange={e => setFilter({...filter, search: e.target.value})}
             placeholder="Search teams or venues..."
             className="w-full bg-white/5 border border-white/10 text-sm text-white pl-9 pr-4 py-2.5 outline-none focus:border-red-600/40" />
@@ -214,15 +214,15 @@ export default function ScheduleManager() {
             <thead>
               <tr className="border-b border-white/8 bg-black/30">
                 {['#','Date & Time','Division','Home Team','Score','Away Team','Venue','Status','Actions'].map(h => (
-                  <th key={h} className="font-mono text-[9px] tracking-[2px] uppercase text-gray-600 px-4 py-3 text-left whitespace-nowrap">{h}</th>
+                  <th key={h} className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 px-4 py-3 text-left whitespace-nowrap">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan={9} className="text-center py-12 font-mono text-xs text-gray-600 tracking-[2px]">LOADING...</td></tr>
+                <tr><td colSpan={9} className="text-center py-12 font-mono text-xs text-gray-300 tracking-[2px]">LOADING...</td></tr>
               ) : filtered.length === 0 ? (
-                <tr><td colSpan={9} className="text-center py-12 text-gray-600 text-sm">No games found. Upload a CSV to get started.</td></tr>
+                <tr><td colSpan={9} className="text-center py-12 text-gray-400 text-sm">No games found. Upload a CSV to get started.</td></tr>
               ) : (
                 filtered.map(g => {
                   const dt = new Date(g.scheduled_at)
@@ -230,24 +230,24 @@ export default function ScheduleManager() {
                   const timeStr = dt.toLocaleTimeString('en-CA',{hour:'numeric',minute:'2-digit',hour12:true})
                   return (
                     <tr key={g.id} className="border-b border-white/4 hover:bg-white/3 transition-colors">
-                      <td className="px-4 py-3 font-mono text-[10px] text-gray-600">{g.external_id}</td>
+                      <td className="px-4 py-3 font-mono text-[10px] text-gray-400">{g.external_id}</td>
                       <td className="px-4 py-3 font-mono text-[10px] text-red-400 whitespace-nowrap">{dateStr}<br/>{timeStr}</td>
-                      <td className="px-4 py-3 text-xs text-gray-500">{g.division?.name || g.category}</td>
+                      <td className="px-4 py-3 text-xs text-gray-300">{g.division?.name || g.category}</td>
                       <td className="px-4 py-3 font-medium text-white">{g.home_team_name}</td>
                       <td className="px-4 py-3 font-mono text-sm">
-                        {g.status==='final' ? <span className="text-white">{g.home_score} – {g.away_score}</span> : <span className="text-gray-700">—</span>}
+                        {g.status==='final' ? <span className="text-white">{g.home_score} – {g.away_score}</span> : <span className="text-gray-400">—</span>}
                       </td>
                       <td className="px-4 py-3 font-medium text-white">{g.away_team_name}</td>
-                      <td className="px-4 py-3 text-xs text-gray-600 max-w-[140px] truncate">{g.venues?.name || g.court}</td>
+                      <td className="px-4 py-3 text-xs text-gray-300 max-w-[140px] truncate">{g.venues?.name || g.court}</td>
                       <td className="px-4 py-3">
-                        <span className={`font-mono text-[9px] px-2 py-1 tracking-[1px]
-                          ${g.status==='final'?'bg-green-500/10 text-green-400':g.status==='live'?'bg-red-600/20 text-red-400':g.status==='postponed'?'bg-yellow-500/10 text-yellow-400':'bg-white/5 text-gray-600'}`}>
+                        <span className={`font-mono text-[11px] px-2 py-1 tracking-[1px]
+                          ${g.status==='final'?'bg-green-500/10 text-green-400':g.status==='live'?'bg-red-600/20 text-red-400':g.status==='postponed'?'bg-yellow-500/10 text-yellow-400':'bg-white/5 text-gray-400'}`}>
                           {g.status}
                         </span>
                       </td>
                       <td className="px-4 py-3">
                         <button onClick={() => setEditGame({...g})}
-                          className="text-gray-600 hover:text-white transition-colors">
+                          className="text-gray-400 hover:text-white transition-colors">
                           <Edit2 size={13} />
                         </button>
                       </td>
@@ -258,7 +258,7 @@ export default function ScheduleManager() {
             </tbody>
           </table>
         </div>
-        <div className="px-5 py-3 border-t border-white/8 font-mono text-[9px] text-gray-600 tracking-[2px]">
+        <div className="px-5 py-3 border-t border-white/8 font-mono text-[11px] text-gray-400 tracking-[2px]">
           {filtered.length} GAMES
         </div>
       </div>
@@ -269,24 +269,24 @@ export default function ScheduleManager() {
           <div className="bg-[#0a0400] border border-white/15 w-full max-w-md">
             <div className="px-6 py-4 border-b border-white/8 flex items-center justify-between">
               <div className="font-display text-lg tracking-wide text-white">Edit Game</div>
-              <button onClick={() => setEditGame(null)} className="text-gray-600 hover:text-white text-xl">×</button>
+              <button onClick={() => setEditGame(null)} className="text-gray-400 hover:text-white text-xl">×</button>
             </div>
             <div className="p-6 space-y-4">
               <div className="text-sm text-gray-400">{editGame.home_team_name} vs {editGame.away_team_name}</div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Home Score</label>
+                  <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Home Score</label>
                   <input type="number" value={editGame.home_score??''} onChange={e => setEditGame({...editGame, home_score: e.target.value ? parseInt(e.target.value) : null})}
                     className="w-full bg-white/5 border border-white/10 text-white px-3 py-2.5 text-center font-display text-xl outline-none focus:border-red-600/40" />
                 </div>
                 <div>
-                  <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Away Score</label>
+                  <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Away Score</label>
                   <input type="number" value={editGame.away_score??''} onChange={e => setEditGame({...editGame, away_score: e.target.value ? parseInt(e.target.value) : null})}
                     className="w-full bg-white/5 border border-white/10 text-white px-3 py-2.5 text-center font-display text-xl outline-none focus:border-red-600/40" />
                 </div>
               </div>
               <div>
-                <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Status</label>
+                <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Status</label>
                 <select value={editGame.status} onChange={e => setEditGame({...editGame, status: e.target.value})}
                   className="w-full bg-[#0a0400] border border-white/10 text-white px-3 py-2.5 outline-none">
                   {['scheduled','warmup','live','halftime','final','postponed','cancelled','forfeit'].map(s => (
@@ -295,7 +295,7 @@ export default function ScheduleManager() {
                 </select>
               </div>
               <div>
-                <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">Notes</label>
+                <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">Notes</label>
                 <input value={editGame.notes||''} onChange={e => setEditGame({...editGame, notes: e.target.value})}
                   className="w-full bg-white/5 border border-white/10 text-white px-3 py-2.5 text-sm outline-none focus:border-red-600/40"
                   placeholder="Optional..." />

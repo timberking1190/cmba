@@ -47,7 +47,7 @@ export default function ScoringPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <div className="font-mono text-[9px] tracking-[3px] uppercase text-red-500 mb-1">Live Scoring</div>
+        <div className="font-mono text-[11px] tracking-[2px] uppercase text-red-500 mb-1">Live Scoring</div>
         <h1 className="font-display text-4xl text-white tracking-wide">Enter Scores</h1>
       </div>
 
@@ -66,7 +66,7 @@ export default function ScoringPage() {
           <thead>
             <tr className="border-b border-white/8 bg-black/30">
               {['Date','Time','Division','Home Team','Home','','Away','Away Team','Venue','Status','Action'].map(h => (
-                <th key={h} className="font-mono text-[9px] tracking-[2px] uppercase text-gray-600 px-3 py-3 text-left whitespace-nowrap">{h}</th>
+                <th key={h} className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 px-3 py-3 text-left whitespace-nowrap">{h}</th>
               ))}
             </tr>
           </thead>
@@ -77,13 +77,13 @@ export default function ScoringPage() {
               const isSaving = saving===g.id
               return (
                 <tr key={g.id} className="border-b border-white/4 hover:bg-white/3">
-                  <td className="px-3 py-3 font-mono text-[10px] text-gray-600">
+                  <td className="px-3 py-3 font-mono text-[10px] text-gray-400">
                     {dt.toLocaleDateString('en-CA',{month:'short',day:'numeric'})}
                   </td>
                   <td className="px-3 py-3 font-mono text-[10px] text-red-400">
                     {dt.toLocaleTimeString('en-CA',{hour:'numeric',minute:'2-digit',hour12:true})}
                   </td>
-                  <td className="px-3 py-3 text-xs text-gray-500 max-w-[100px] truncate">{g.division?.name||g.category}</td>
+                  <td className="px-3 py-3 text-xs text-gray-300 max-w-[100px] truncate">{g.division?.name||g.category}</td>
                   <td className="px-3 py-3 font-medium text-white">{g.home_team_name}</td>
                   <td className="px-3 py-2">
                     <input type="number" min="0" max="999" value={s.home}
@@ -91,7 +91,7 @@ export default function ScoringPage() {
                       className="w-14 bg-red-600/10 border border-red-600/30 text-red-300 text-center font-display text-lg px-1 py-1.5 outline-none focus:border-red-500"
                       placeholder="—" />
                   </td>
-                  <td className="px-1 text-gray-700 text-center">:</td>
+                  <td className="px-1 text-gray-400 text-center">:</td>
                   <td className="px-3 py-2">
                     <input type="number" min="0" max="999" value={s.away}
                       onChange={e => setScores({...scores,[g.id]:{...s,away:e.target.value}})}
@@ -99,22 +99,22 @@ export default function ScoringPage() {
                       placeholder="—" />
                   </td>
                   <td className="px-3 py-3 font-medium text-white">{g.away_team_name}</td>
-                  <td className="px-3 py-3 text-xs text-gray-600 max-w-[120px] truncate">{g.venues?.name||g.court}</td>
+                  <td className="px-3 py-3 text-xs text-gray-300 max-w-[120px] truncate">{g.venues?.name||g.court}</td>
                   <td className="px-3 py-3">
-                    <span className={`font-mono text-[9px] px-2 py-1 tracking-[1px]
-                      ${g.status==='final'?'bg-green-500/10 text-green-400':g.status==='live'?'bg-red-600/20 text-red-400':'bg-white/5 text-gray-600'}`}>
+                    <span className={`font-mono text-[11px] px-2 py-1 tracking-[1px]
+                      ${g.status==='final'?'bg-green-500/10 text-green-400':g.status==='live'?'bg-red-600/20 text-red-400':'bg-white/5 text-gray-400'}`}>
                       {g.status}
                     </span>
                   </td>
                   <td className="px-3 py-2">
                     <div className="flex gap-2">
                       {g.status!=='live' && g.status!=='final' && (
-                        <button onClick={() => setLive(g.id)} className="font-mono text-[9px] tracking-[1px] px-2 py-1.5 border border-red-600/30 text-red-500 hover:bg-red-600/10">
+                        <button onClick={() => setLive(g.id)} className="font-mono text-[11px] tracking-[1px] px-2 py-1.5 border border-red-600/30 text-red-500 hover:bg-red-600/10">
                           GO LIVE
                         </button>
                       )}
                       <button onClick={() => saveScore(g)} disabled={isSaving||s.home===''||s.away===''}
-                        className="font-mono text-[9px] tracking-[1px] px-3 py-1.5 bg-green-500/15 text-green-400 hover:bg-green-500/25 disabled:opacity-30 disabled:cursor-not-allowed">
+                        className="font-mono text-[11px] tracking-[1px] px-3 py-1.5 bg-green-500/15 text-green-400 hover:bg-green-500/25 disabled:opacity-30 disabled:cursor-not-allowed">
                         {isSaving ? '...' : 'SAVE FINAL'}
                       </button>
                     </div>

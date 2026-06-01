@@ -89,7 +89,7 @@ export default function RulesPage() {
       <div className="relative z-10 pt-24 px-4 md:px-14 pb-32 md:pb-20">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-7 h-px bg-red-600"/>
-          <span className="font-mono text-[10px] tracking-[3px] uppercase text-red-500">2025–26 Season</span>
+          <span className="font-mono text-[10px] tracking-[2px] uppercase text-red-500">2025–26 Season</span>
         </div>
         <h1 className="font-display text-[clamp(48px,7vw,90px)] leading-none tracking-[-1px] text-white mb-8">
           RULES<br/><span className="text-red-500">HUB</span>
@@ -112,7 +112,7 @@ export default function RulesPage() {
             <div className="lg:col-span-3 space-y-5">
               {/* AI Search */}
               <div className="border border-red-600/25 bg-red-600/4 p-5">
-                <div className="font-mono text-[9px] tracking-[3px] uppercase text-red-500 mb-3 flex items-center gap-2">
+                <div className="font-mono text-[11px] tracking-[2px] uppercase text-red-500 mb-3 flex items-center gap-2">
                   <span>⚡</span> Ask the Rulebook
                 </div>
                 <div className="flex gap-3">
@@ -134,7 +134,7 @@ export default function RulesPage() {
 
               {/* Text filter */}
               <div className="relative">
-                <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600"/>
+                <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"/>
                 <input value={search} onChange={e=>setSearch(e.target.value)}
                   placeholder="Search rules..."
                   className="w-full bg-white/5 border border-white/10 text-sm text-white pl-9 pr-4 py-3 outline-none focus:border-red-600/40"/>
@@ -142,22 +142,22 @@ export default function RulesPage() {
 
               {/* Rules list */}
               {loading ? (
-                <div className="border border-white/8 p-10 text-center font-mono text-xs text-gray-600 tracking-[2px]">LOADING RULES...</div>
+                <div className="border border-white/8 p-10 text-center font-mono text-xs text-gray-400 tracking-[2px]">LOADING RULES...</div>
               ) : Object.entries(grouped).map(([cat, catRules]) => (
                 <div key={cat} className="border border-white/8 overflow-hidden">
                   <div className="px-5 py-3 bg-red-600/5 border-b border-white/8">
                     <span className="font-display text-base tracking-wide text-white">{cat}</span>
-                    <span className="ml-2 font-mono text-[9px] text-gray-600 tracking-[1px]">{catRules.length} rules</span>
+                    <span className="ml-2 font-mono text-[11px] text-gray-400 tracking-[1px]">{catRules.length} rules</span>
                   </div>
                   {catRules.map(r => (
                     <div key={r.id} className="border-b border-white/4 last:border-0">
                       <button onClick={() => setExpanded(e=>({...e,[r.id]:!e[r.id]}))}
                         className="w-full flex items-center gap-3 px-5 py-4 hover:bg-white/3 active:bg-white/5 text-left transition-colors">
-                        {expanded[r.id] ? <ChevronDown size={14} className="text-red-500 flex-shrink-0"/> : <ChevronRight size={14} className="text-gray-600 flex-shrink-0"/>}
+                        {expanded[r.id] ? <ChevronDown size={14} className="text-red-500 flex-shrink-0"/> : <ChevronRight size={14} className="text-gray-400 flex-shrink-0"/>}
                         <span className="font-mono text-[10px] text-red-500 min-w-[36px]">{r.rule_number}</span>
                         <span className="font-medium text-white text-sm">{r.title}</span>
                         {r.tags?.slice(0,2).map((t:string) => (
-                          <span key={t} className="ml-auto font-mono text-[8px] px-2 py-0.5 bg-white/5 text-gray-600 tracking-[1px] hidden sm:block">{t}</span>
+                          <span key={t} className="ml-auto font-mono text-[10px] px-2 py-0.5 bg-white/5 text-gray-400 tracking-[1px] hidden sm:block">{t}</span>
                         ))}
                       </button>
                       {expanded[r.id] && (
@@ -165,7 +165,7 @@ export default function RulesPage() {
                           <p className="text-sm text-gray-300 leading-relaxed">{r.body}</p>
                           {r.division_modifications?.length > 0 && (
                             <div className="mt-3 p-3 bg-yellow-500/5 border border-yellow-500/20">
-                              <div className="font-mono text-[9px] tracking-[2px] uppercase text-yellow-500 mb-2">Division Modifications</div>
+                              <div className="font-mono text-[11px] tracking-[2px] uppercase text-yellow-500 mb-2">Division Modifications</div>
                               {r.division_modifications.map((m:any,i:number) => (
                                 <div key={i} className="text-xs text-gray-400">{m}</div>
                               ))}
@@ -182,7 +182,7 @@ export default function RulesPage() {
             {/* Sidebar */}
             <div className="space-y-4">
               <div className="border border-white/8 overflow-hidden">
-                <div className="px-4 py-3 border-b border-white/8 font-mono text-[9px] tracking-[3px] uppercase text-gray-500">Categories</div>
+                <div className="px-4 py-3 border-b border-white/8 font-mono text-[11px] tracking-[2px] uppercase text-gray-500">Categories</div>
                 {CATEGORIES.map(c => (
                   <button key={c} onClick={() => setCategory(c)}
                     className={`w-full text-left px-4 py-2.5 text-sm border-b border-white/4 last:border-0 transition-colors
@@ -192,7 +192,7 @@ export default function RulesPage() {
                 ))}
               </div>
               <div className="border border-white/8 p-4">
-                <div className="font-mono text-[9px] tracking-[3px] uppercase text-gray-500 mb-3">Quick Links</div>
+                <div className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 mb-3">Quick Links</div>
                 <a href="https://basketballalberta.ca" target="_blank" className="text-xs text-red-500 hover:text-red-400 block py-1.5 border-b border-white/5 last:border-0">Basketball Alberta →</a>
                 <a href="https://basketball.ca" target="_blank" className="text-xs text-red-500 hover:text-red-400 block py-1.5 border-b border-white/5 last:border-0">Basketball Canada →</a>
                 <a href="https://fiba.basketball" target="_blank" className="text-xs text-red-500 hover:text-red-400 block py-1.5">FIBA Official Rules →</a>
@@ -222,7 +222,7 @@ export default function RulesPage() {
             <div className="border border-yellow-500/20 bg-yellow-500/4 p-5">
               <div className="flex gap-2 items-start">
                 <AlertCircle size={14} className="text-yellow-400 flex-shrink-0 mt-0.5"/>
-                <p className="text-xs text-gray-400 leading-relaxed">Division modifications are approved by the CMBA Board at the start of each season and may be updated. If you have questions about a specific division, contact your club representative.</p>
+                <p className="text-xs text-gray-300 leading-relaxed">Division modifications are approved by the CMBA Board at the start of each season and may be updated. If you have questions about a specific division, contact your club representative.</p>
               </div>
             </div>
           </div>
@@ -231,12 +231,12 @@ export default function RulesPage() {
         {/* POINTS OF EMPHASIS */}
         {activeTab === 'poe' && (
           <div className="max-w-3xl space-y-4">
-            <p className="text-sm text-gray-500 mb-6 leading-relaxed">Points of emphasis are directives from CMBA and Basketball Alberta to officials for the current season. These highlight areas where consistent enforcement improves the game experience for all participants.</p>
+            <p className="text-sm text-gray-300 mb-6 leading-relaxed">Points of emphasis are directives from CMBA and Basketball Alberta to officials for the current season. These highlight areas where consistent enforcement improves the game experience for all participants.</p>
             {poe.map(p => (
               <div key={p.id} className={`border p-5 ${PRIORITY_STYLE[p.priority]||'border-white/8'}`}>
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <h3 className="font-display text-lg tracking-wide text-white">{p.title}</h3>
-                  <span className={`font-mono text-[9px] px-2 py-1 tracking-[1px] flex-shrink-0 ${PRIORITY_BADGE[p.priority]}`}>
+                  <span className={`font-mono text-[11px] px-2 py-1 tracking-[1px] flex-shrink-0 ${PRIORITY_BADGE[p.priority]}`}>
                     {p.priority}
                   </span>
                 </div>
@@ -244,7 +244,7 @@ export default function RulesPage() {
                 {p.applies_to?.length > 0 && !p.applies_to.includes('all') && (
                   <div className="mt-3 flex gap-2">
                     {p.applies_to.map((d:string) => (
-                      <span key={d} className="font-mono text-[9px] px-2 py-1 bg-white/5 text-gray-500 tracking-[1px]">{d}</span>
+                      <span key={d} className="font-mono text-[11px] px-2 py-1 bg-white/5 text-gray-500 tracking-[1px]">{d}</span>
                     ))}
                   </div>
                 )}

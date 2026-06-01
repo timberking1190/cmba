@@ -101,7 +101,7 @@ export function Navbar({ active = '' }: { active?: string }) {
                   href={link.href}
                   className={`font-mono text-[11px] tracking-[2px] uppercase transition-colors py-2 ${
                     active === link.href || pathname === link.href
-                      ? 'text-white' : 'text-gray-500 hover:text-white'
+                      ? 'text-white' : 'text-gray-300 hover:text-white'
                   }`}
                   aria-current={pathname === link.href ? 'page' : undefined}
                 >
@@ -153,7 +153,7 @@ export function Navbar({ active = '' }: { active?: string }) {
             ) : (
               <>
                 <Link href="/login"
-                  className="font-mono text-xs tracking-[2px] uppercase text-gray-400 hover:text-white transition-colors min-h-[48px] flex items-center px-2">
+                  className="font-mono text-xs tracking-[2px] uppercase text-gray-200 hover:text-white transition-colors min-h-[48px] flex items-center px-2">
                   Login
                 </Link>
                 <Link href="/signup"
@@ -193,7 +193,7 @@ export function Navbar({ active = '' }: { active?: string }) {
                     className={`flex items-center gap-3 px-6 py-4 text-base transition-colors border-b border-white/4 last:border-0 ${
                       pathname === link.href
                         ? 'text-white bg-red-600/8 border-l-2 border-l-red-600'
-                        : 'text-gray-400 hover:text-white hover:bg-white/4'
+                        : 'text-gray-200 hover:text-white hover:bg-white/4'
                     }`}
                     aria-current={pathname === link.href ? 'page' : undefined}
                   >
@@ -208,7 +208,7 @@ export function Navbar({ active = '' }: { active?: string }) {
             <div className="px-6 py-4 border-t border-white/8">
               {user ? (
                 <div className="space-y-2">
-                  <div className="text-xs text-gray-600 font-mono tracking-[2px] uppercase mb-3">
+                  <div className="text-xs text-gray-400 font-mono tracking-[2px] uppercase mb-3">
                     Signed in as {profile?.full_name || user.email}
                   </div>
                   {isAdmin && (
@@ -250,27 +250,27 @@ export function Navbar({ active = '' }: { active?: string }) {
             key={link.href}
             href={link.href}
             className={`flex-1 flex flex-col items-center justify-center gap-1 py-2 transition-colors ${
-              pathname === link.href ? 'text-red-500' : 'text-gray-600'
+              pathname === link.href ? 'text-red-500' : 'text-gray-400'
             }`}
             aria-current={pathname === link.href ? 'page' : undefined}
           >
             <span className="text-lg leading-none">{link.icon}</span>
-            <span className="font-mono text-[9px] tracking-[1px] uppercase">{link.label}</span>
+            <span className="font-mono text-[11px] tracking-[1px] uppercase">{link.label}</span>
           </Link>
         ))}
         {user ? (
           <Link href="/dashboard"
             className={`flex-1 flex flex-col items-center justify-center gap-1 py-2 ${
-              pathname === '/dashboard' ? 'text-red-500' : 'text-gray-600'
+              pathname === '/dashboard' ? 'text-red-500' : 'text-gray-400'
             }`}>
             <User size={18} />
-            <span className="font-mono text-[9px] tracking-[1px] uppercase">Account</span>
+            <span className="font-mono text-[11px] tracking-[1px] uppercase">Account</span>
           </Link>
         ) : (
           <Link href="/login"
-            className="flex-1 flex flex-col items-center justify-center gap-1 py-2 text-gray-600">
+            className="flex-1 flex flex-col items-center justify-center gap-1 py-2 text-gray-400">
             <User size={18} />
-            <span className="font-mono text-[9px] tracking-[1px] uppercase">Login</span>
+            <span className="font-mono text-[11px] tracking-[1px] uppercase">Login</span>
           </Link>
         )}
       </nav>

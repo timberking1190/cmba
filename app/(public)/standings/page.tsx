@@ -37,7 +37,7 @@ export default function StandingsPage() {
       <div className="relative z-10 pt-24 px-4 md:px-14 pb-32 md:pb-20">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-7 h-px bg-red-600" />
-          <span className="font-mono text-[10px] tracking-[3px] uppercase text-red-500">2025–26 Season</span>
+          <span className="font-mono text-[10px] tracking-[2px] uppercase text-red-500">2025–26 Season</span>
         </div>
         <h1 className="font-display text-[clamp(48px,7vw,90px)] leading-none tracking-[-1px] text-white mb-8">
           DIVISION<br /><span className="text-red-500">STANDINGS</span>
@@ -59,7 +59,7 @@ export default function StandingsPage() {
         {currentDiv && standings.length > 0 ? (
           <StandingsTable standings={standings} title={currentDiv.name} />
         ) : (
-          <div className="border border-white/8 p-16 text-center text-gray-600 font-mono text-xs tracking-[2px] uppercase">
+          <div className="border border-white/8 p-16 text-center text-gray-400 font-mono text-xs tracking-[2px] uppercase">
             {divisions.length === 0 ? 'No standings available' : 'Select a division'}
           </div>
         )}

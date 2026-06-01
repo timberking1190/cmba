@@ -7,7 +7,7 @@ const STATUS_OPTIONS = ['received','under_review','forwarded_scc','resolved_no_a
 const STATUS_COLORS: Record<string,string> = {
   received:'bg-white/8 text-gray-400', under_review:'bg-red-600/15 text-red-400',
   forwarded_scc:'bg-yellow-500/15 text-yellow-400', resolved_no_action:'bg-green-500/15 text-green-400',
-  resolved_action_taken:'bg-green-600/20 text-green-300', dismissed:'bg-white/5 text-gray-600',
+  resolved_action_taken:'bg-green-600/20 text-green-300', dismissed:'bg-white/5 text-gray-400',
   shared_executive:'bg-blue-500/15 text-blue-400',
 }
 
@@ -37,7 +37,7 @@ export default function ReportsPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <div className="font-mono text-[9px] tracking-[3px] uppercase text-red-500 mb-1">Sportsmanship & Conduct</div>
+        <div className="font-mono text-[11px] tracking-[2px] uppercase text-red-500 mb-1">Sportsmanship & Conduct</div>
         <h1 className="font-display text-4xl text-white tracking-wide">Game Reports</h1>
       </div>
 
@@ -54,7 +54,7 @@ export default function ReportsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 border border-white/8 overflow-hidden">
           {reports.length === 0 ? (
-            <div className="p-12 text-center text-gray-600 text-sm">No reports found</div>
+            <div className="p-12 text-center text-gray-400 text-sm">No reports found</div>
           ) : (
             reports.map(r => (
               <div key={r.id} onClick={() => setSelReport(r)}
@@ -69,9 +69,9 @@ export default function ReportsPage() {
                     {r.report_type==='concern' ? `⚠ ` : `⭐ `}
                     {r.division_name} · {r.home_team} vs {r.away_team}
                   </div>
-                  <div className="text-xs text-gray-600 mt-0.5">{r.submitter_name} · {new Date(r.created_at).toLocaleDateString()}</div>
+                  <div className="text-xs text-gray-400 mt-0.5">{r.submitter_name} · {new Date(r.created_at).toLocaleDateString()}</div>
                 </div>
-                <span className={`font-mono text-[9px] px-2 py-1 tracking-[1px] whitespace-nowrap ${STATUS_COLORS[r.status]||''}`}>
+                <span className={`font-mono text-[11px] px-2 py-1 tracking-[1px] whitespace-nowrap ${STATUS_COLORS[r.status]||''}`}>
                   {r.status.replace(/_/g,' ')}
                 </span>
               </div>
@@ -82,7 +82,7 @@ export default function ReportsPage() {
         {/* Report detail panel */}
         {selReport ? (
           <div className="border border-white/8 p-5">
-            <div className="font-mono text-[9px] text-red-500 tracking-[2px] mb-2">{selReport.reference_num}</div>
+            <div className="font-mono text-[11px] text-red-500 tracking-[2px] mb-2">{selReport.reference_num}</div>
             <div className="font-display text-lg text-white mb-4">
               {selReport.report_type==='concern' ? '⚠ Concern' : '⭐ Compliment'}
             </div>
@@ -95,16 +95,16 @@ export default function ReportsPage() {
                 {l:'Regarding', v:(selReport.reported_parties||[]).join(', ')},
               ].map(f => f.v ? (
                 <div key={f.l}>
-                  <div className="font-mono text-[9px] tracking-[1px] uppercase text-gray-600 mb-0.5">{f.l}</div>
+                  <div className="font-mono text-[11px] tracking-[1px] uppercase text-gray-400 mb-0.5">{f.l}</div>
                   <div className="text-white">{f.v}</div>
                 </div>
               ) : null)}
               <div>
-                <div className="font-mono text-[9px] tracking-[1px] uppercase text-gray-600 mb-1">Description</div>
-                <div className="text-gray-300 leading-relaxed">{selReport.description}</div>
+                <div className="font-mono text-[11px] tracking-[1px] uppercase text-gray-400 mb-1">Description</div>
+                <div className="text-gray-200 leading-relaxed">{selReport.description}</div>
               </div>
             </div>
-            <div className="font-mono text-[9px] tracking-[2px] uppercase text-gray-600 mb-2">Update Status</div>
+            <div className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 mb-2">Update Status</div>
             <div className="space-y-1.5">
               {STATUS_OPTIONS.map(s => (
                 <button key={s} onClick={() => updateStatus(selReport.id, s)}
@@ -117,8 +117,8 @@ export default function ReportsPage() {
           </div>
         ) : (
           <div className="border border-white/8 p-8 flex flex-col items-center justify-center text-center">
-            <Eye size={28} className="text-gray-700 mb-3" />
-            <p className="text-gray-600 text-sm">Select a report to view details and update status</p>
+            <Eye size={28} className="text-gray-400 mb-3" />
+            <p className="text-gray-400 text-sm">Select a report to view details and update status</p>
           </div>
         )}
       </div>

@@ -41,7 +41,7 @@ export default function AdminOverview() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <div className="font-mono text-[9px] tracking-[3px] uppercase text-red-500 mb-1">Admin Dashboard</div>
+        <div className="font-mono text-[11px] tracking-[2px] uppercase text-red-500 mb-1">Admin Dashboard</div>
         <h1 className="font-display text-4xl text-white tracking-wide">Overview</h1>
       </div>
 
@@ -52,10 +52,10 @@ export default function AdminOverview() {
             className="border border-white/8 bg-white/2 p-5 hover:border-red-600/30 transition-colors group">
             <div className="flex items-start justify-between mb-3">
               <s.icon size={16} className={s.color} />
-              <span className="font-mono text-[9px] tracking-[1px] uppercase text-gray-600 group-hover:text-gray-400 transition-colors">→</span>
+              <span className="font-mono text-[11px] tracking-[1px] uppercase text-gray-400 group-hover:text-gray-300 transition-colors">→</span>
             </div>
             <div className={`font-display text-4xl ${s.color} mb-1`}>{s.val}</div>
-            <div className="font-mono text-[9px] tracking-[2px] uppercase text-gray-600">{s.label}</div>
+            <div className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400">{s.label}</div>
           </Link>
         ))}
       </div>
@@ -64,24 +64,24 @@ export default function AdminOverview() {
         {/* Recent games */}
         <div className="border border-white/8">
           <div className="px-5 py-3 border-b border-white/8 flex items-center justify-between">
-            <span className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500">Recent Games</span>
-            <Link href="/admin/schedule" className="font-mono text-[9px] text-red-500 tracking-[1px]">View All →</Link>
+            <span className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400">Recent Games</span>
+            <Link href="/admin/schedule" className="font-mono text-[11px] text-red-500 tracking-[1px]">View All →</Link>
           </div>
           {recentGames.map(g => (
             <div key={g.id} className="flex items-center gap-3 px-5 py-3 border-b border-white/4 last:border-0">
-              <span className={`font-mono text-[9px] px-2 py-1 tracking-[1px]
-                ${g.status==='final'?'bg-green-500/10 text-green-400':g.status==='live'?'bg-red-600/20 text-red-400':'bg-white/5 text-gray-600'}`}>
+              <span className={`font-mono text-[11px] px-2 py-1 tracking-[1px]
+                ${g.status==='final'?'bg-green-500/10 text-green-400':g.status==='live'?'bg-red-600/20 text-red-400':'bg-white/5 text-gray-400'}`}>
                 {g.status}
               </span>
               <div className="flex-1 text-xs text-white truncate">{g.home_team_name} vs {g.away_team_name}</div>
-              {g.status==='final' && <span className="font-mono text-xs text-gray-500">{g.home_score}–{g.away_score}</span>}
+              {g.status==='final' && <span className="font-mono text-xs text-gray-300">{g.home_score}–{g.away_score}</span>}
             </div>
           ))}
         </div>
 
         {/* Quick actions */}
         <div className="space-y-3">
-          <div className="font-mono text-[9px] tracking-[2px] uppercase text-gray-600 mb-4">Quick Actions</div>
+          <div className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 mb-4">Quick Actions</div>
           {[
             { href:'/admin/schedule', label:'Upload Schedule CSV', desc:'Import RAMP format schedule file', icon:'📤' },
             { href:'/admin/scoring', label:'Enter Game Scores', desc:'Update scores for completed games', icon:'🏀' },
@@ -93,7 +93,7 @@ export default function AdminOverview() {
               <span className="text-xl">{a.icon}</span>
               <div>
                 <div className="text-sm font-medium text-white group-hover:text-red-400 transition-colors">{a.label}</div>
-                <div className="text-xs text-gray-600">{a.desc}</div>
+                <div className="text-xs text-gray-400">{a.desc}</div>
               </div>
             </Link>
           ))}

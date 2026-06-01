@@ -40,14 +40,14 @@ export default function UsersPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <div className="font-mono text-[9px] tracking-[3px] uppercase text-red-500 mb-1">User Management</div>
+          <div className="font-mono text-[11px] tracking-[2px] uppercase text-red-500 mb-1">User Management</div>
           <h1 className="font-display text-4xl text-white tracking-wide">Users & Roles</h1>
         </div>
-        <div className="font-mono text-xs text-gray-600 tracking-[2px]">{users.length} REGISTERED</div>
+        <div className="font-mono text-xs text-gray-400 tracking-[2px]">{users.length} REGISTERED</div>
       </div>
 
       <div className="relative mb-5 max-w-sm">
-        <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
+        <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
         <input value={search} onChange={e => setSearch(e.target.value)}
           placeholder="Search by name, email, role..."
           className="w-full bg-white/5 border border-white/10 text-sm text-white pl-9 pr-4 py-2.5 outline-none focus:border-red-600/40" />
@@ -58,7 +58,7 @@ export default function UsersPage() {
           <thead>
             <tr className="border-b border-white/8 bg-black/30">
               {['Name','Email','Role','Joined','Actions'].map(h => (
-                <th key={h} className="font-mono text-[9px] tracking-[2px] uppercase text-gray-600 px-5 py-3 text-left">{h}</th>
+                <th key={h} className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 px-5 py-3 text-left">{h}</th>
               ))}
             </tr>
           </thead>
@@ -66,18 +66,18 @@ export default function UsersPage() {
             {filtered.map(u => (
               <tr key={u.id} className="border-b border-white/4 hover:bg-white/3 transition-colors">
                 <td className="px-5 py-3 font-medium text-white">{u.full_name || '—'}</td>
-                <td className="px-5 py-3 font-mono text-xs text-gray-500">{u.email}</td>
+                <td className="px-5 py-3 font-mono text-xs text-gray-300">{u.email}</td>
                 <td className="px-5 py-3">
-                  <span className={`font-mono text-[9px] px-2 py-1 tracking-[1px] capitalize ${ROLE_COLORS[u.role]||'bg-white/6 text-gray-500'}`}>
+                  <span className={`font-mono text-[11px] px-2 py-1 tracking-[1px] capitalize ${ROLE_COLORS[u.role]||'bg-white/6 text-gray-500'}`}>
                     {u.role}
                   </span>
                 </td>
-                <td className="px-5 py-3 font-mono text-[10px] text-gray-600">
+                <td className="px-5 py-3 font-mono text-[10px] text-gray-400">
                   {new Date(u.created_at).toLocaleDateString('en-CA',{month:'short',day:'numeric',year:'numeric'})}
                 </td>
                 <td className="px-5 py-3">
                   <button onClick={() => setEditUser(u)}
-                    className="font-mono text-[9px] tracking-[1px] px-3 py-1.5 border border-white/10 text-gray-500 hover:text-white hover:border-white/30 transition-colors">
+                    className="font-mono text-[11px] tracking-[1px] px-3 py-1.5 border border-white/10 text-gray-500 hover:text-white hover:border-white/30 transition-colors">
                     Change Role
                   </button>
                 </td>
@@ -92,7 +92,7 @@ export default function UsersPage() {
           <div className="bg-[#0a0400] border border-white/15 w-96">
             <div className="px-6 py-4 border-b border-white/8">
               <div className="font-display text-lg tracking-wide text-white">Change Role</div>
-              <div className="text-xs text-gray-500 mt-1">{editUser.full_name} · {editUser.email}</div>
+              <div className="text-xs text-gray-300 mt-1">{editUser.full_name} · {editUser.email}</div>
             </div>
             <div className="p-6 space-y-2">
               {ROLES.map(r => (

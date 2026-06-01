@@ -47,7 +47,7 @@ export default function SignupPage() {
           <div className="p-8 border-b border-white/8">
             <img src="/logo.png" alt="CMBA" className="h-10 w-auto mb-5" />
             <h1 className="font-display text-3xl tracking-wide text-white">Create Account</h1>
-            <p className="text-sm text-gray-500 mt-1">Join the CMBA platform</p>
+            <p className="text-sm text-gray-400 mt-1">Join the CMBA platform</p>
           </div>
           <form onSubmit={handleSignup} className="p-8 space-y-5">
             {[
@@ -56,7 +56,7 @@ export default function SignupPage() {
               { label: 'Password', key: 'password', type: 'password', ph: 'Min. 8 characters' },
             ].map(f => (
               <div key={f.key}>
-                <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">{f.label}</label>
+                <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">{f.label}</label>
                 <input type={f.type} value={(form as any)[f.key]}
                   onChange={e => setForm({...form, [f.key]: e.target.value})} required
                   className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm outline-none focus:border-red-600/50"
@@ -64,7 +64,7 @@ export default function SignupPage() {
               </div>
             ))}
             <div>
-              <label className="font-mono text-[9px] tracking-[2px] uppercase text-gray-500 block mb-2">I am a...</label>
+              <label className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 block mb-2">I am a...</label>
               <select value={form.role} onChange={e => setForm({...form, role: e.target.value})}
                 className="w-full bg-[#0a0400] border border-white/10 text-white px-4 py-3 text-sm outline-none focus:border-red-600/50">
                 {ROLES.filter(r => !['admin','commissioner'].includes(r.value)).map(r => (
@@ -77,7 +77,7 @@ export default function SignupPage() {
               className="w-full font-display text-base tracking-[2px] bg-red-600 text-black py-3.5 hover:bg-red-500 transition-colors disabled:opacity-50">
               {loading ? 'Creating Account...' : 'Create Account →'}
             </button>
-            <p className="text-center text-sm text-gray-600">
+            <p className="text-center text-sm text-gray-300">
               Already have an account?{' '}
               <Link href="/login" className="text-red-500 hover:text-red-400">Sign in</Link>
             </p>
