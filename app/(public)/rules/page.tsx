@@ -19,6 +19,8 @@ export default function RulesPage() {
   const [expanded, setExpanded]       = useState<Record<string,boolean>>({})
   const [aiQuery, setAiQuery]         = useState('')
   const [aiAnswer, setAiAnswer]       = useState('')
+  const [aiError, setAiError]         = useState('')
+  const [aiSource, setAiSource]       = useState<'ai'|'search'>('search')
   const [aiLoading, setAiLoading]     = useState(false)
   const [loading, setLoading]         = useState(true)
   const [activeTab, setActiveTab]     = useState<'rules'|'divisions'|'poe'>('rules')
@@ -51,23 +53,24 @@ export default function RulesPage() {
   }, {} as Record<string,any[]>)
 
   async function askAI() {
-    if (!aiQuery.trim()) return
+    const q = aiQuery.trim()
+    if (!q) return
     setAiLoading(true)
     setAiAnswer('')
-    const ctx = rules.map(r => `Rule ${r.rule_number} — ${r.title}: ${r.body}`).join('\n\n')
+    setAiError('')
     try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({
-          model:'claude-sonnet-4-20250514', max_tokens:600,
-          system: `You are the CMBA rules expert. Answer questions concisely based ONLY on these rules. If the answer isn\'t in the rules, say so plainly.\n\nRULES:\n${ctx}`,
-          messages:[{role:'user',content:aiQuery}]
-        })
+      const res = await fetch('/api/rules-search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: q }),
       })
       const data = await res.json()
-      setAiAnswer(data.content?.[0]?.text || 'No answer available.')
-    } catch { setAiAnswer('Rule search unavailable right now.') }
+      if (data.error) throw new Error(data.error)
+      setAiAnswer(data.answer || 'No answer found.')
+      setAiSource(data.source || 'search')
+    } catch (err: any) {
+      setAiError('Search unavailable. Try again.')
+    }
     setAiLoading(false)
   }
 
@@ -117,7 +120,7 @@ export default function RulesPage() {
                 </div>
                 <div className="flex gap-3">
                   <input value={aiQuery} onChange={e=>setAiQuery(e.target.value)}
-                    onKeyDown={e=>e.key==='Enter'&&askAI()}
+                    onKeyDown={e=>{ if(e.key==='Enter'){e.preventDefault();askAI()} }}
                     placeholder="e.g. How many team fouls before bonus? Can a coach call timeout?"
                     className="flex-1 bg-white/5 border border-white/10 text-white text-sm px-4 py-3 outline-none focus:border-red-600/50" />
                   <button onClick={askAI} disabled={aiLoading}
@@ -125,9 +128,20 @@ export default function RulesPage() {
                     {aiLoading ? 'Searching...' : 'Ask →'}
                   </button>
                 </div>
+                {aiError && (
+                  <p className="mt-3 text-sm text-red-400 font-mono">{aiError}</p>
+                )}
                 {aiAnswer && (
-                  <div className="mt-4 p-4 bg-black/30 border border-white/8 text-sm text-gray-300 leading-relaxed">
-                    {aiAnswer}
+                  <div className="mt-4 p-4 bg-black/30 border border-white/10 space-y-2">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`text-[10px] font-mono px-2 py-0.5 tracking-wider uppercase
+                        ${aiSource === 'ai'
+                          ? 'bg-red-900/40 text-red-300 border border-red-700/40'
+                          : 'bg-white/8 text-slate-400 border border-white/10'}`}>
+                        {aiSource === 'ai' ? '⚡ AI Answer' : '🔍 Best Match'}
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">{aiAnswer}</p>
                   </div>
                 )}
               </div>

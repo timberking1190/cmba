@@ -8,5 +8,8 @@
       "NEXT_PUBLIC_SUPABASE_URL": "https://vdlpmjmpaalesmddwabo.supabase.co",
       "NEXT_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_rYOxJ1k52TaEuYPPxkjjPg_yKLcIUqC"
     }
+  },
+  "env": {
+    "ANTHROPIC_API_KEY": ""
   }
 }

@@ -63,21 +63,6 @@ export default function HomePage() {
             Create Account
           </Link>
         </div>
-
-        {/* Stats row */}
-        <div className="grid grid-cols-2 md:flex gap-px md:gap-0 mt-12 md:mt-16 border border-white/8">
-          {[
-            { val: '400+',   lbl: 'Teams' },
-            { val: '2,000+', lbl: 'Games / Season' },
-            { val: '15+',    lbl: 'Divisions' },
-            { val: '12',     lbl: 'Venues' },
-          ].map(s => (
-            <div key={s.lbl} className="px-6 md:px-8 py-5 border-r border-white/8 last:border-r-0 bg-white/2">
-              <div className="font-display text-2xl md:text-3xl text-red-500">{s.val}</div>
-              <div className="font-mono text-[11px] tracking-[2px] uppercase text-gray-400 mt-1">{s.lbl}</div>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* ── PLATFORM MODULES ────────────────────────────── */}
@@ -90,8 +75,8 @@ export default function HomePage() {
           className="font-display leading-none tracking-[-1px] text-white mb-4"
           style={{ fontSize: 'clamp(40px, 6vw, 80px)' }}
         >
-          EVERYTHING YOUR<br />
-          <span className="text-red-500">LEAGUE NEEDS</span>
+          EVERYTHING OUR<br />
+          <span className="text-red-500">MEMBERS NEED</span>
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-white/8 border border-white/8 mt-10 md:mt-12">
