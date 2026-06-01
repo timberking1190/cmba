@@ -7,8 +7,8 @@ export default function HomePage() {
   const modules = [
     { href: '/schedule',  icon: '📅', num: '01', title: 'Schedule & Standings', desc: 'Game times, live scores, standings, and directions. No login required.' },
     { href: '/rules',     icon: '📖', num: '02', title: 'Rules Hub',            desc: 'Complete rulebook, AI search, division modifications at a glance.' },
-    { href: '/dashboard', icon: '🏀', num: '03', title: 'Coach Education',      desc: 'NCCP pathways, course modules, clinic registration.' },
-    { href: '/dashboard', icon: '🏁', num: '04', title: 'Referee Education',    desc: 'Signals guide, RAMP pathway, Points of Emphasis.' },
+    { href: '/education/coach', icon: '🏀', num: '03', title: 'Coach Education',      desc: 'NCCP pathways, course modules, clinic registration.' },
+    { href: '/education/officials', icon: '🏁', num: '04', title: 'Referee Education',    desc: 'Signals guide, RAMP pathway, Points of Emphasis.' },
     { href: '/report',    icon: '📋', num: '05', title: 'Game Report',          desc: 'Concerns and compliments. Structured, accountable, followed up.' },
   ]
 
