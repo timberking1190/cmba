@@ -17,7 +17,7 @@ export default function HomePage() {
       <Navbar />
 
       {/* HERO */}
-      <section className="relative z-10 min-h-screen flex flex-col justify-center px-14 pt-20 overflow-hidden">
+      <section className="relative z-10 min-h-screen flex flex-col justify-center px-5 md:px-14 pt-24 pb-32 md:pb-20 overflow-hidden">
         <h1 className="font-display text-[clamp(80px,14vw,200px)] leading-[0.88] tracking-[-2px] mb-8 animate-fade-up">
           <span className="block text-white">Calgary</span>
           <span className="block text-white">Minor</span>
@@ -28,7 +28,7 @@ export default function HomePage() {
         <p className="text-gray-300 text-lg font-light max-w-md mb-10 leading-relaxed">
           Every game. Every rule. Every coach, referee, and parent. Built for the bench and the bleachers.
         </p>
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex flex-col xs:flex-row gap-3 md:gap-4">
           <Link href="/schedule" className="font-display text-lg tracking-[2px] bg-red-600 text-black px-8 py-4 hover:bg-red-500 transition-colors">
             Find Tonight's Games
           </Link>
@@ -38,7 +38,7 @@ export default function HomePage() {
         </div>
 
         {/* Stats */}
-        <div className="flex gap-0 mt-16 border border-white/8">
+        <div className="grid grid-cols-2 md:flex gap-px md:gap-0 mt-12 md:mt-16 border border-white/8">
           {[
             { val: '400+', lbl: 'Teams' },
             { val: '2,000+', lbl: 'Games / Season' },
@@ -54,7 +54,7 @@ export default function HomePage() {
       </section>
 
       {/* PLATFORM MODULES */}
-      <section className="relative z-10 px-14 py-20">
+      <section className="relative z-10 px-5 md:px-14 py-12 md:py-20">
         <div className="flex items-center gap-4 mb-10">
           <div className="w-7 h-px bg-red-600" />
           <span className="font-mono text-[10px] tracking-[3px] uppercase text-red-500">The Platform</span>
@@ -62,7 +62,7 @@ export default function HomePage() {
         <h2 className="font-display text-[clamp(40px,6vw,80px)] leading-none tracking-[-1px] text-white mb-4">
           EVERYTHING YOUR<br /><span className="text-red-500">LEAGUE NEEDS</span>
         </h2>
-        <div className="grid grid-cols-5 gap-px bg-white/8 border border-white/8 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-white/8 border border-white/8 mt-12">
           {modules.map(m => (
             <Link key={m.href} href={m.href}
               className="bg-[#060200] p-7 group hover:bg-[#0d0400] transition-colors relative overflow-hidden">
@@ -78,9 +78,9 @@ export default function HomePage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative z-10 border-t border-white/8 px-14 py-8 flex items-center justify-between">
+      <footer className="relative z-10 border-t border-white/8 px-5 md:px-14 py-6 md:py-8 flex items-center justify-between">
         <img src="/logo.png" alt="CMBA" className="h-8 w-auto" />
-        <div className="flex gap-6">
+        <div className="hidden md:flex gap-6">
           {['Schedule','Standings','Rules','Education','Report'].map(l => (
             <Link key={l} href={`/${l.toLowerCase()}`} className="font-mono text-[10px] tracking-[2px] uppercase text-gray-600 hover:text-white transition-colors">{l}</Link>
           ))}

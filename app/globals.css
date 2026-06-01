@@ -3,15 +3,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── DESIGN TOKENS ──────────────────────────────────── */
 :root {
   --red: #CC0000;
   --red-dim: rgba(204,0,0,0.12);
   --red-border: rgba(204,0,0,0.35);
   --border: rgba(255,255,255,0.08);
   --surface: rgba(255,255,255,0.04);
+
+  /* Safe areas for notched phones */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+
+  /* Touch-friendly minimum sizes */
+  --touch-min: 48px;
+  --tap-gap: 8px;
 }
 
-* { box-sizing: border-box; }
+/* ── RESET & BASE ────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* Prevent iOS font inflation */
+  text-size-adjust: 100%;
+  touch-action: manipulation; /* Faster tap response, disable double-tap zoom */
+}
 
 body {
   background: #060200;
@@ -20,30 +39,116 @@ body {
     repeating-linear-gradient(0deg,transparent,transparent 9px,rgba(0,0,0,0.04) 9px,rgba(0,0,0,0.04) 10px);
   color: #f0f4ff;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;         /* 16px minimum — prevents iOS zoom on focus */
+  line-height: 1.6;        /* WCAG readable line height */
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* Padding for safe areas */
+  padding-left: var(--safe-left);
+  padding-right: var(--safe-right);
 }
 
+/* ── TYPOGRAPHY — MOBILE FIRST ───────────────────────── */
 .font-display { font-family: 'Bebas Neue', sans-serif; }
-.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-mono    { font-family: 'JetBrains Mono', monospace; }
 
-/* Court background */
-.court-bg {
-  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+/* Fluid type scale */
+h1 { font-size: clamp(2.5rem, 8vw, 8rem); }
+h2 { font-size: clamp(2rem, 5vw, 5rem); }
+h3 { font-size: clamp(1.25rem, 3vw, 2rem); }
+
+/* ── TOUCH TARGETS ───────────────────────────────────── */
+/* Every interactive element must be at least 48×48px */
+a, button, [role="button"], input, select, textarea,
+label[for], .nav-item, .fchip, .tb-filter, .act-btn {
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(204,0,0,0.4); border-radius: 2px; }
+/* Inline links in text don't need 48px height, only nav/button links */
+p a, .inline-link { min-height: unset; min-width: unset; }
 
-/* Game status badges */
-.status-live { background: rgba(204,0,0,0.2); color: #FF4444; }
-.status-final { background: rgba(46,213,115,0.1); color: #2ED573; }
-.status-scheduled { background: rgba(255,255,255,0.06); color: #94A3B8; }
-.status-postponed { background: rgba(251,191,36,0.1); color: #FBBF24; }
-.status-cancelled { background: rgba(204,0,0,0.1); color: rgba(204,0,0,0.7); }
+/* Remove touch delay on iOS */
+a, button { touch-action: manipulation; }
 
-/* Animations */
+/* Remove iOS button blue highlight */
+* { -webkit-tap-highlight-color: rgba(204, 0, 0, 0.15); }
+
+/* ── FOCUS STYLES (keyboard + accessibility) ─────────── */
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* ── HOVER — ONLY ON DEVICES WITH POINTER ───────────── */
+/* Prevents hover states sticking on touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .hover-red:hover { color: var(--red); }
+  .hover-border:hover { border-color: var(--red-border); }
+}
+
+/* ── INPUTS — PREVENT iOS ZOOM ───────────────────────── */
+/* iOS zooms in if input font-size < 16px */
+input, select, textarea {
+  font-size: 1rem !important; /* 16px — critical for no-zoom */
+  border-radius: 0; /* Remove iOS default radius */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* ── SCROLLING ────────────────────────────────────────── */
+.scroll-smooth { scroll-behavior: smooth; }
+
+/* Momentum scrolling on iOS */
+.overflow-y-auto, .overflow-x-auto, [class*="overflow"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbars on mobile tables (still scrollable) */
+.overflow-x-auto::-webkit-scrollbar { display: none; }
+.overflow-x-auto { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── SAFE AREA — NOTCHED PHONES ──────────────────────── */
+nav {
+  padding-top: calc(var(--safe-top) + 0.75rem);
+}
+footer {
+  padding-bottom: calc(var(--safe-bottom) + 1.5rem);
+}
+
+/* Fixed bottom nav gets safe area */
+.bottom-nav {
+  padding-bottom: calc(var(--safe-bottom) + 0.5rem);
+}
+
+/* ── COURT BACKGROUND ─────────────────────────────────── */
+.court-bg {
+  position: fixed; inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ── GAME STATUS ──────────────────────────────────────── */
+.status-live     { background: rgba(204,0,0,0.2); color: #FF4444; }
+.status-final    { background: rgba(46,213,115,0.1); color: #2ED573; }
+.status-scheduled{ background: rgba(255,255,255,0.06); color: #94A3B8; }
+.status-postponed{ background: rgba(251,191,36,0.1); color: #FBBF24; }
+.status-cancelled{ background: rgba(204,0,0,0.1); color: rgba(204,0,0,0.7); }
+
+/* ── ANIMATIONS ───────────────────────────────────────── */
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @keyframes pulse-live {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -52,6 +157,101 @@ body {
 
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-up { animation: fade-up 0.6s ease forwards; }
+
+/* ── SCROLLBAR ────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(204,0,0,0.4); border-radius: 2px; }
+
+/* ── IMAGES ───────────────────────────────────────────── */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── BOTTOM NAV (mobile only) ─────────────────────────── */
+.mobile-bottom-nav {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    background: rgba(4,1,0,0.97);
+    border-top: 1px solid var(--border);
+    padding: 8px 0 calc(var(--safe-bottom) + 4px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+/* ── RESPONSIVE UTILITIES ─────────────────────────────── */
+.container-mobile {
+  width: 100%;
+  padding-left: max(1.25rem, var(--safe-left));
+  padding-right: max(1.25rem, var(--safe-right));
+}
+
+@media (min-width: 640px)  { .container-mobile { padding-left: 2rem; padding-right: 2rem; } }
+@media (min-width: 1024px) { .container-mobile { padding-left: 3.5rem; padding-right: 3.5rem; } }
+@media (min-width: 1280px) { .container-mobile { max-width: 1280px; margin: 0 auto; } }
+
+/* ── ADMIN RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Admin sidebar becomes top bar on mobile */
+  .admin-wrap { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: sticky;
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-logo { display: none; }
+  .sidebar-footer { display: none; }
+  .sidebar-nav {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .sidebar-nav::-webkit-scrollbar { display: none; }
+  .nav-section { display: none; }
+  .nav-item {
+    flex-direction: column;
+    padding: 12px 16px;
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    font-size: 10px;
+    gap: 4px;
+    min-height: 56px;
+    flex-shrink: 0;
+  }
+  .nav-item.active {
+    border-bottom-color: var(--red);
+    border-left: none;
+  }
+  .nav-item svg { width: 16px; height: 16px; }
+  /* Main content full width */
+  .main { overflow-y: auto; }
+  /* Tables scroll horizontally on mobile */
+  .gtable { font-size: 12px; }
+  .gtable th, .gtable td { padding: 8px 10px; }
+}
+
+/* ── SCORE ENTRY MOBILE ───────────────────────────────── */
+@media (max-width: 640px) {
+  .score-input { width: 52px; font-size: 20px; }
+}

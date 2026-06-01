@@ -55,7 +55,7 @@ export default function SchedulePage() {
       <CourtBackground />
       <Navbar active="/schedule" />
 
-      <div className="relative z-10 pt-28 px-8 md:px-14 pb-20">
+      <div className="relative z-10 pt-24 px-4 md:px-14 pb-32 md:pb-20">
         {/* Header */}
         <div className="flex items-center gap-3 mb-3">
           <div className="w-7 h-px bg-red-600" />
@@ -66,7 +66,7 @@ export default function SchedulePage() {
         </h1>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-3 mb-8">
+        <div className="flex gap-2 mb-6 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap md:mb-8">
           {[
             { key: 'upcoming', label: 'Upcoming' },
             { key: 'tonight', label: 'Tonight' },
@@ -87,7 +87,7 @@ export default function SchedulePage() {
         </div>
 
         {/* Games */}
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="xl:col-span-2 space-y-4">
             {loading ? (
               <div className="border border-white/8 p-12 text-center text-gray-600 font-mono text-xs tracking-[2px]">

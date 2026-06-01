@@ -1,0 +1,21 @@
+{
+  "name": "CMBA — Calgary Minor Basketball",
+  "short_name": "CMBA",
+  "description": "Official league management platform for Calgary Minor Basketball Association",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#060200",
+  "theme_color": "#CC0000",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["sports", "education"],
+  "lang": "en-CA",
+  "dir": "ltr",
+  "shortcuts": [
+    { "name": "Schedule", "url": "/schedule", "description": "View game schedule" },
+    { "name": "Standings", "url": "/standings", "description": "View division standings" }
+  ]
+}

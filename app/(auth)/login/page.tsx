@@ -30,7 +30,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 pb-24 md:pb-4">
       <CourtBackground />
       <div className="relative z-10 w-full max-w-md">
         <div className="border border-white/8 bg-white/2 backdrop-blur-sm">

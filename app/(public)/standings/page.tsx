@@ -34,7 +34,7 @@ export default function StandingsPage() {
     <div className="min-h-screen">
       <CourtBackground />
       <Navbar active="/standings" />
-      <div className="relative z-10 pt-28 px-8 md:px-14 pb-20">
+      <div className="relative z-10 pt-24 px-4 md:px-14 pb-32 md:pb-20">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-7 h-px bg-red-600" />
           <span className="font-mono text-[10px] tracking-[3px] uppercase text-red-500">2025–26 Season</span>
